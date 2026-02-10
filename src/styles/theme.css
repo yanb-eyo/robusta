@@ -6,7 +6,7 @@
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    font-family: var(--font-family) sans-serif;
+    font-family: var(--font-family);
     transition: all 0.2s ease;
     display: inline-flex;
     align-items: center;
@@ -47,7 +47,7 @@
     padding: 10px 12px;
     border-radius: 8px;
     font-size: 14px;
-    font-family: var(--font-family) sans-serif;
+    font-family: var(--font-family);
     transition: border-color 0.2s ease;
 }
 

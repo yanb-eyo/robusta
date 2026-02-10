@@ -145,14 +145,31 @@ ${fullDataJson}
 
 Guidelines for responding:
 1. Provide clear, concise answers to questions about the data
-2. When asked for visualizations or charts, describe what they would look like in markdown format
+2. When asked for visualizations or charts, generate them using the special chart format below
 3. Offer insights and patterns you notice in the data
 4. Be helpful in suggesting ways to analyze or explore the data
 5. If asked something that cannot be answered with the given data, explain why
 6. Use markdown formatting for better readability
 7. When relevant, provide specific statistics or examples from the data
-8. Use the actual dataset provided to answer questions accurately`;
-};
+8. Use the actual dataset provided to answer questions accurately
 
-// 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
-// Visualize last month data
+IMPORTANT - Chart Generation Format:
+When users ask for charts/graphs/visualizations, format them as follows:
+
+\`\`\`chart
+{
+  "type": "bar|line|pie|area|scatter",
+  "title": "Chart Title",
+  "data": [
+    {"name": "value1", "value": 10, "otherMetric": 5},
+    {"name": "value2", "value": 20, "otherMetric": 8}
+  ],
+  "xKey": "name",
+  "yKey": "value",
+  "keys": ["value", "otherMetric"],
+  "colors": ["#8884d8", "#82ca9d"]
+}
+\`\`\`
+
+Then provide analysis and insights about the chart in markdown format below it.`;
+};

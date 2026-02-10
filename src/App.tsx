@@ -8,7 +8,7 @@ import './styles/theme.css';
 import './styles/chat.css';
 
 export default function App() {
-  const [apiKey, setApiKey] = useState<string>('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');
+  const [apiKey, setApiKey] = useState<string>('');
   const [data, setData] = useState<ParsedData | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);

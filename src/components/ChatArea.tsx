@@ -1,5 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import {marked} from 'marked';
+import {ChartRenderer} from './ChartRenderer';
+import {extractChartData, removeChartMarkers} from '../utils/chartParser';
 import '../styles/chat.css';
 
 export interface Message {
@@ -59,25 +61,33 @@ export const ChatArea: React.FC<ChatAreaProps> = ({messages, isLoading = false, 
           </div>
         ) : (
           <>
-            {messages.map((message) => (
-              <div key={message.id} className={`message ${message.role}`}>
-                <div className="message-avatar">
-                  {message.role === 'user' ? 'You' : 'AI'}
+            {messages.map((message) => {
+              const chartData = message.role === 'assistant' ? extractChartData(message.content) : null;
+              const markdownContent = chartData ? removeChartMarkers(message.content) : message.content;
+              
+              return (
+                <div key={message.id} className={`message ${message.role}`}>
+                  <div className="message-avatar">
+                    {message.role === 'user' ? 'You' : 'AI'}
+                  </div>
+                  <div className="message-bubble">
+                    {message.role === 'assistant' ? (
+                      <>
+                        {chartData && <ChartRenderer chartData={chartData} />}
+                        <div
+                          className="message-content"
+                          dangerouslySetInnerHTML={{
+                            __html: parseMarkdown(markdownContent),
+                          }}
+                        />
+                      </>
+                    ) : (
+                      <div className="message-content">{message.content}</div>
+                    )}
+                  </div>
                 </div>
-                <div className="message-bubble">
-                  {message.role === 'assistant' ? (
-                    <div
-                      className="message-content"
-                      dangerouslySetInnerHTML={{
-                        __html: parseMarkdown(message.content),
-                      }}
-                    />
-                  ) : (
-                    <div className="message-content">{message.content}</div>
-                  )}
-                </div>
-              </div>
-            ))}
+              );
+            })}
             {isLoading && (
               <div className="message assistant">
                 <div className="message-avatar">AI</div>
@@ -116,3 +126,4 @@ const styles = {
     color: 'var(--color-text-secondary)',
   },
 };
+
