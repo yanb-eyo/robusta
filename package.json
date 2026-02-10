@@ -1,0 +1,27 @@
+{
+  "name": "hello-react-ts",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.74.0",
+    "bson": "^7.2.0",
+    "markdown-it": "^14.1.0",
+    "marked": "^17.0.1",
+    "papaparse": "^5.5.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.1.6",
+    "vite": "^5.1.0"
+  }
+}

@@ -1,0 +1,39 @@
+:root {
+    --color-primary: #56f5ca;
+    --color-secondary: #3898ec;
+    --color-background: rgb(22, 39, 67);
+    --color-surface: #1a2844;
+    --color-text: #ffffff;
+    --color-text-secondary: #b4bcc8;
+    --color-border: #2d3e5f;
+    --font-family: 'Sora', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family) sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+}
+
+body {
+    overflow: hidden;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
