@@ -18,6 +18,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from 'recharts';
+import '../styles/components.css';
 
 interface ChartData {
   type: 'line' | 'bar' | 'pie' | 'scatter' | 'area';
@@ -164,9 +165,9 @@ export const ChartRenderer: React.FC<{ chartData: ChartData }> = ({ chartData })
   };
 
   return (
-    <div style={{ width: '100%', margin: '16px 0' }}>
+    <div className="chart-container">
       {chartData.title && (
-        <h3 style={{ marginBottom: '12px', color: '#333' }}>{chartData.title}</h3>
+        <h3 className="chart-title">{chartData.title}</h3>
       )}
       {renderChart()}
     </div>

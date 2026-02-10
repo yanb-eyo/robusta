@@ -1,4 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
+import '../styles/components.css';
+
 
 interface ChatInputProps {
   onSendMessage: (message: string) => void;
@@ -38,8 +40,8 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.inputWrapper}>
+    <div className="chat-input-container">
+      <div className="chat-input-wrapper">
         <textarea
           ref={textareaRef}
           value={input}
@@ -51,17 +53,12 @@ export const ChatInput: React.FC<ChatInputProps> = ({
               : 'Ask a question about your data... (Shift+Enter for new line)'
           }
           disabled={disabled || isLoading}
-          style={{
-            ...styles.textarea,
-            opacity: disabled ? 0.6 : 1,
-          } as React.CSSProperties}
-          className="input"
+          className={`chat-textarea input ${disabled ? 'disabled' : ''}`}
         />
         <button
           onClick={handleSend}
           disabled={disabled || isLoading || !input.trim()}
-          style={styles.sendBtn}
-          className="btn btn-primary"
+          className="chat-send-btn btn btn-primary"
           title="Send message (Enter)"
         >
           {isLoading ? (
@@ -69,59 +66,17 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           ) : (
             <>
               Send
-              <span style={{fontSize: '12px'}}>↵</span>
+              <span className="chat-send-shortcut">↵</span>
             </>
           )}
         </button>
       </div>
-      <div style={styles.hint}>
-        <span style={styles.hintText}>
+      <div className="chat-input-hint">
+        <span className="chat-input-hint-text">
           {disabled
             ? '📁 Upload a data file to enable chat'
             : '💡 Tip: You can ask analytical questions, request visualizations data, or get summaries'}
         </span>
       </div>
     </div>
-  );
-};
-
-const styles = {
-  container: {
-    padding: '16px 24px 24px',
-    borderTop: '1px solid var(--color-border)',
-    backgroundColor: 'var(--color-background)',
-  } as React.CSSProperties,
-  inputWrapper: {
-    display: 'flex',
-    gap: '12px',
-    alignItems: 'flex-end',
-    marginBottom: '8px',
-  } as React.CSSProperties,
-  textarea: {
-    flex: 1,
-    minHeight: '44px',
-    maxHeight: '120px',
-    padding: '12px 16px',
-    border: '1px solid var(--color-border)',
-    borderRadius: '8px',
-    backgroundColor: 'var(--color-surface)',
-    color: 'var(--color-text)',
-    fontFamily: 'var(--font-family)',
-    fontSize: '14px',
-    lineHeight: '1.5',
-    resize: 'none',
-    overflow: 'auto',
-  } as React.CSSProperties,
-  sendBtn: {
-    padding: '12px 24px',
-    minWidth: '100px',
-    height: '44px',
-  } as React.CSSProperties,
-  hint: {
-    paddingLeft: '4px',
-  } as React.CSSProperties,
-  hintText: {
-    fontSize: '12px',
-    color: 'var(--color-text-secondary)',
-  } as React.CSSProperties,
-};
+  );};

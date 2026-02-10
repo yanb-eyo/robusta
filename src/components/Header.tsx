@@ -1,4 +1,5 @@
 import React, {useRef} from 'react';
+import '../styles/components.css';
 
 interface HeaderProps {
   onFileSelected: (file: File) => void;
@@ -25,22 +26,21 @@ export const Header: React.FC<HeaderProps> = ({onFileSelected, currentFileName, 
   };
 
   return (
-    <header style={styles.header}>
-      <div style={styles.container}>
-        <div style={styles.titleSection}>
-          <h1 style={styles.title}>Data Analysis Chat</h1>
+    <header className="header">
+      <div className="header-container">
+        <div className="header-title-section">
+          <h1 className="header-title">Data Analysis Chat</h1>
         </div>
-        <div style={styles.rightSection}>
+        <div className="header-right-section">
           {currentFileName && (
-            <span style={styles.fileName}>
+            <span className="header-file-name">
               📄 {currentFileName}
             </span>
           )}
           <button
             onClick={handleFileClick}
             disabled={isLoading}
-            style={styles.uploadBtn}
-            className="btn btn-secondary"
+            className="header-upload-btn btn btn-secondary"
           >
             {isLoading ? (
               <>
@@ -60,52 +60,8 @@ export const Header: React.FC<HeaderProps> = ({onFileSelected, currentFileName, 
         type="file"
         accept=".csv,.json,.jsonl,.bson"
         onChange={handleFileChange}
-        style={{display: 'none'}}
+        className="file-input-hidden"
       />
     </header>
   );
-};
-
-const styles = {
-  header: {
-    padding: '16px 24px',
-    borderBottom: '1px solid var(--color-border)',
-    backgroundColor: 'var(--color-surface)',
-  } as React.CSSProperties,
-  container: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    maxWidth: '1200px',
-    margin: '0 auto',
-    width: '100%',
-  } as React.CSSProperties,
-  titleSection: {
-    flex: 1,
-  } as React.CSSProperties,
-  title: {
-    margin: 0,
-    fontSize: '20px',
-    fontWeight: 600,
-    color: 'var(--color-text)',
-  } as React.CSSProperties,
-  rightSection: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '16px',
-  } as React.CSSProperties,
-  fileName: {
-    fontSize: '13px',
-    color: 'var(--color-text-secondary)',
-    padding: '6px 12px',
-    backgroundColor: 'rgba(86, 245, 202, 0.1)',
-    borderRadius: '6px',
-    maxWidth: '200px',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  } as React.CSSProperties,
-  uploadBtn: {
-    minWidth: '130px',
-  } as React.CSSProperties,
 };

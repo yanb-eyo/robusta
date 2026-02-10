@@ -3,6 +3,7 @@ import {marked} from 'marked';
 import {ChartRenderer} from './ChartRenderer';
 import {extractChartData, removeChartMarkers} from '../utils/chartParser';
 import '../styles/chat.css';
+import '../styles/components.css';
 
 export interface Message {
   id: string;
@@ -37,7 +38,7 @@ export const ChatArea: React.FC<ChatAreaProps> = ({messages, isLoading = false, 
   if (!hasDataSource) {
     return (
       <div className="chat-container">
-        <div style={styles.emptyState}>
+        <div className="empty-state-message">
           <div className="empty-state-icon">📚</div>
           <div className="empty-state-title">No data source loaded</div>
           <div className="empty-state-subtitle">
@@ -52,7 +53,7 @@ export const ChatArea: React.FC<ChatAreaProps> = ({messages, isLoading = false, 
     <div className="chat-container">
       <div className="chat-messages">
         {messages.length === 0 ? (
-          <div style={styles.emptyStateWithData}>
+          <div className="empty-state-message">
             <div className="empty-state-icon">💬</div>
             <div className="empty-state-title">Start your analysis</div>
             <div className="empty-state-subtitle">
@@ -92,7 +93,7 @@ export const ChatArea: React.FC<ChatAreaProps> = ({messages, isLoading = false, 
               <div className="message assistant">
                 <div className="message-avatar">AI</div>
                 <div className="message-bubble">
-                  <div className="spinner" style={{marginRight: '8px'}}/>
+                  <div className="spinner loading-spinner-inline"/>
                 </div>
               </div>
             )}
@@ -103,27 +104,3 @@ export const ChatArea: React.FC<ChatAreaProps> = ({messages, isLoading = false, 
     </div>
   );
 };
-
-const styles = {
-  emptyState: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    textAlign: 'center' as const,
-    padding: '40px',
-    color: 'var(--color-text-secondary)',
-  },
-  emptyStateWithData: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    textAlign: 'center' as const,
-    padding: '40px',
-    color: 'var(--color-text-secondary)',
-  },
-};
-
